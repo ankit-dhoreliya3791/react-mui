@@ -1,35 +1,42 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import Box from "@mui/material/Box";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Grid2 } from "@mui/material";
+import Header from "./components/layout/header/Header";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+function MyApp() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Grid2
+      container
+      sx={{ height: "100vh", display: "flex", flexDirection: "column" }}
+    >
+      <Header />
+      <Box
+        sx={{
+          flex: 1, // This allows the content area to take the remaining height
+          display: "flex",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "background.default",
+          color: "text.primary",
+        }}
+      >
+        hello
+      </Box>
+    </Grid2>
   );
 }
 
-export default App;
+const theme = createTheme({
+  colorSchemes: {
+    dark: true,
+  },
+});
+
+export default function ToggleColorMode() {
+  return (
+    <ThemeProvider theme={theme}>
+      <MyApp />
+    </ThemeProvider>
+  );
+}
